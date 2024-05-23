@@ -1,7 +1,7 @@
 #pragma once
 #include "imports.h"
 #include "cUser.h"
-#include "cÑassette.h"
+#include "cÃ‘assette.h"
 
 int countDaysInMonth(int month, int year) {
     if (month == 2) {
@@ -16,11 +16,11 @@ int countDaysInMonth(int month, int year) {
         return 31;
 }
 
-// Ôóíêöèÿ äëÿ ïîäñ÷åòà ğàçíèöû ìåæäó äâóìÿ äàòàìè
-int countDays(Ñassette::DateReceiv dateRec, Ñassette::DateReturn date2) {
+// Ã”Ã³Ã­ÃªÃ¶Ã¨Ã¿ Ã¤Ã«Ã¿ Ã¯Ã®Ã¤Ã±Ã·Ã¥Ã²Ã  Ã°Ã Ã§Ã­Ã¨Ã¶Ã» Ã¬Ã¥Ã¦Ã¤Ã³ Ã¤Ã¢Ã³Ã¬Ã¿ Ã¤Ã Ã²Ã Ã¬Ã¨
+int countDays(Ã‘assette::DateReceiv dateRec, Ã‘assette::DateReturn date2) {
     int count = 0;
 
-    // Ïîäñ÷åò äíåé â ãîäàõ
+    // ÃÃ®Ã¤Ã±Ã·Ã¥Ã² Ã¤Ã­Ã¥Ã© Ã¢ Ã£Ã®Ã¤Ã Ãµ
     for (int i = dateRec.year; i < date2.year; i++) {
         if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0))
             count += 366;
@@ -28,11 +28,11 @@ int countDays(Ñassette::DateReceiv dateRec, Ñassette::DateReturn date2) {
             count += 365;
     }
 
-    // Ïîäñ÷åò äíåé â ìåñÿöàõ
+    // ÃÃ®Ã¤Ã±Ã·Ã¥Ã² Ã¤Ã­Ã¥Ã© Ã¢ Ã¬Ã¥Ã±Ã¿Ã¶Ã Ãµ
     for (int i = dateRec.month; i < date2.month; i++)
         count += countDaysInMonth(i, date2.year);
 
-    // Ïîäñ÷åò äíåé
+    // ÃÃ®Ã¤Ã±Ã·Ã¥Ã² Ã¤Ã­Ã¥Ã©
     count += date2.day - dateRec.day;
 
     return abs(count);
@@ -61,7 +61,7 @@ std::vector<std::vector<int>> convertDateStringToVector(const std::string& dateS
 
     while (getline(ss, part, '.')) {
         std::vector<int> datePart;
-        datePart.push_back(std::stoi(part)); // Ïğåîáğàçîâàíèå ñòğîêè â int
+        datePart.push_back(std::stoi(part)); // ÃÃ°Ã¥Ã®Ã¡Ã°Ã Ã§Ã®Ã¢Ã Ã­Ã¨Ã¥ Ã±Ã²Ã°Ã®ÃªÃ¨ Ã¢ int
         dateVector.push_back(datePart);
         i++;
     }
@@ -76,13 +76,13 @@ void createUser(vector<User>& usrs, User::sUs_initials s)
 	usrs.push_back(newUs);
 }
 
-void createCassettes(vector<Ñassette>& bk, Ñassette c)
+void createCassettes(vector<Ã‘assette>& bk, Ã‘assette c)
 {
-    Ñassette newUs(c);
+    Ã‘assette newUs(c);
 
     bk.push_back(newUs);
 }
-bool existCasset(vector<Ñassette>& bk, Ñassette book)
+bool existCasset(vector<Ã‘assette>& bk, Ã‘assette book)
 {
     for (int i = 0; i < bk.size(); i++)
     {
@@ -99,22 +99,22 @@ bool existCasset(vector<Ñassette>& bk, Ñassette book)
     return false;
 }
 
-bool PassCasset(vector<User>& usrs, string idUser, vector<Ñassette>& bk, Ñassette& bok, Ñassette::DateReceiv dateRec, Ñassette::DateReturn dateRet)
+bool PassCasset(vector<User>& usrs, string idUser, vector<Ã‘assette>& bk, Ã‘assette& bok, Ã‘assette::DateReceiv dateRec, Ã‘assette::DateReturn dateRet)
 {
     for (int i = 0; i < usrs.size(); i++)
     {
-        if (usrs[i].retName().id == idUser) // ïîèñê ïîëüçîâàòåëÿ â áàçå
+        if (usrs[i].retName().id == idUser) // Ã¯Ã®Ã¨Ã±Ãª Ã¯Ã®Ã«Ã¼Ã§Ã®Ã¢Ã Ã²Ã¥Ã«Ã¿ Ã¢ Ã¡Ã Ã§Ã¥
         {
-            if (existCasset(bk, bok))  // ïîèñê êíèãè è ïğîâåğêà çàáğàë ëè å¸ êòî-òî(2 â 1)
+            if (existCasset(bk, bok))  // Ã¯Ã®Ã¨Ã±Ãª ÃªÃ­Ã¨Ã£Ã¨ Ã¨ Ã¯Ã°Ã®Ã¢Ã¥Ã°ÃªÃ  Ã§Ã Ã¡Ã°Ã Ã« Ã«Ã¨ Ã¥Â¸ ÃªÃ²Ã®-Ã²Ã®(2 Ã¢ 1)
             {
                 for (int j = 0; j < bk.size(); j++)
                 {
-                    if (bk[j].GetName() == bok.GetName())  // èùåì êíèãó ïî ìàññèâó, îïèğàÿñü íà èìÿ
+                    if (bk[j].GetName() == bok.GetName())  // Ã¨Ã¹Ã¥Ã¬ ÃªÃ­Ã¨Ã£Ã³ Ã¯Ã® Ã¬Ã Ã±Ã±Ã¨Ã¢Ã³, Ã®Ã¯Ã¨Ã°Ã Ã¿Ã±Ã¼ Ã­Ã  Ã¨Ã¬Ã¿
                     {
                         int allDays = countDays(dateRec, dateRet);
                         int price = allDays = allDays * bk[j].GetPriceDay();
-                        bk[j].PutDate(dateRec, dateRet, price);  // óñòàíîâêà äàòû âûäà÷è/âîçâğàòà
-                        usrs[i].putBook(bk[j]); // ïîìåùàåì íàéäåíóş êíèãó ê ïîëüçîâàòåëş
+                        bk[j].PutDate(dateRec, dateRet, price);  // Ã³Ã±Ã²Ã Ã­Ã®Ã¢ÃªÃ  Ã¤Ã Ã²Ã» Ã¢Ã»Ã¤Ã Ã·Ã¨/Ã¢Ã®Ã§Ã¢Ã°Ã Ã²Ã 
+                        usrs[i].putBook(bk[j]); // Ã¯Ã®Ã¬Ã¥Ã¹Ã Ã¥Ã¬ Ã­Ã Ã©Ã¤Ã¥Ã­Ã³Ã¾ ÃªÃ­Ã¨Ã£Ã³ Ãª Ã¯Ã®Ã«Ã¼Ã§Ã®Ã¢Ã Ã²Ã¥Ã«Ã¾
                         break;
                     }
                 }
@@ -132,16 +132,16 @@ void OccupiedCasset(vector<User>& usrs)
 {
     for (int i = 0; i < usrs.size(); i++)
     {
-        vector<Ñassette> bookGoted = usrs[i].retBooks();
+        vector<Ã‘assette> bookGoted = usrs[i].retBooks();
         if (bookGoted.size() > 0)
         {
-            cout << "Ïîëüçîâàòåëü: ID- " << usrs[i].retName().id << " Ôàìèëèÿ: " << usrs[i].retName().second_name << endl;
-            for (Ñassette t : bookGoted)
+            cout << "ÃÃ®Ã«Ã¼Ã§Ã®Ã¢Ã Ã²Ã¥Ã«Ã¼: ID- " << usrs[i].retName().id << " Ã”Ã Ã¬Ã¨Ã«Ã¨Ã¿: " << usrs[i].retName().second_name << endl;
+            for (Ã‘assette t : bookGoted)
             {
-                cout  << "Íàçâàíèå: " << t.GetName() << "\nĞåæèñ¸ğ: " << t.GetAuthor().name << " " << t.GetAuthor().second_name << "\n";
-                cout  << "Öåíà àğåíäû: " << t.GetPriceRent() << "\n";
-                cout << "Äàòà âûäà÷è: " << t.GetDateReceiv().day << "." << t.GetDateReceiv().month << "." << t.GetDateReceiv().year <<"\n";
-                cout << "Äàòà âîçâğàòà: " << t.GetDateReturn().day << "." << t.GetDateReturn().month << "." << t.GetDateReturn().year << endl << endl;
+                cout  << "ÃÃ Ã§Ã¢Ã Ã­Ã¨Ã¥: " << t.GetName() << "\nÃÃ¥Ã¦Ã¨Ã±Â¸Ã°: " << t.GetAuthor().name << " " << t.GetAuthor().second_name << "\n";
+                cout  << "Ã–Ã¥Ã­Ã  Ã Ã°Ã¥Ã­Ã¤Ã»: " << t.GetPriceRent() << "\n";
+                cout << "Ã„Ã Ã²Ã  Ã¢Ã»Ã¤Ã Ã·Ã¨: " << t.GetDateReceiv().day << "." << t.GetDateReceiv().month << "." << t.GetDateReceiv().year <<"\n";
+                cout << "Ã„Ã Ã²Ã  Ã¢Ã®Ã§Ã¢Ã°Ã Ã²Ã : " << t.GetDateReturn().day << "." << t.GetDateReturn().month << "." << t.GetDateReturn().year << endl << endl;
             }
 
             cout << endl << endl << endl;
@@ -149,17 +149,17 @@ void OccupiedCasset(vector<User>& usrs)
     }
 }
 
-void ShowAllCasset(vector<Ñassette>& casset)
+void ShowAllCasset(vector<Ã‘assette>& casset)
 {
-    for (int i = 0; i < casset.size(); i++)
-    {
-        cout << "Íàçâàíèå: " << casset[i].GetName() << "\nĞåæèñ¸ğ: " << casset[i].GetAuthor().name << " " << casset[i].GetAuthor().second_name << "\n";
-        cout << "Öåíà: " << casset[i].GetPriceDay() << "\n";
-        cout << "Áğàëè: " << casset[i].GetInfoTaking() << " ğàç" << endl << endl;
-    }
+	cout << "â„–\t" << "ĞĞ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ğµ\t" << "Ğ ĞµĞ¶Ğ¸ÑÑÑ‘Ñ€\t" << "Ğ¦ĞµĞ½Ğ°\t" << "Ğ‘Ñ€Ğ°Ğ»Ğ¸ (Ñ€Ğ°Ğ·)" << endl;
+	for (int i = 0; i < casset.size(); i++)
+	{
+		cout << i + 1 << "\t" << casset[i].GetName() << "\t" << casset[i].GetAuthor().name << " " << casset[i].GetAuthor().second_name  << "\t";
+		cout << casset[i].GetPriceDay() << "\t" << casset[i].GetInfoTaking() << endl << endl;
+	}
 }
 
-bool RemoveCasset(vector<Ñassette>& bk, Ñassette& bok)
+bool RemoveCasset(vector<Ã‘assette>& bk, Ã‘assette& bok)
 {
     for (int i = 0; i < bk.size(); i++)
     {
@@ -173,7 +173,7 @@ bool RemoveCasset(vector<Ñassette>& bk, Ñassette& bok)
     return false;
 }
 
-bool RemoveDate(vector<Ñassette>& bk, Ñassette& bok)
+bool RemoveDate(vector<Ã‘assette>& bk, Ã‘assette& bok)
 {
     for (int i = 0; i < bk.size(); i++)
     {
@@ -213,13 +213,13 @@ bool is_date_valid(const std::string& str) {
     return true;
 }
 
-bool RemoveBookOnUser(vector<User>& usrs, vector<Ñassette>& bk, Ñassette& bok)
+bool RemoveBookOnUser(vector<User>& usrs, vector<Ã‘assette>& bk, Ã‘assette& bok)
 {
     if (!existCasset(bk, bok))
     {
         for (int i = 0; i < usrs.size(); i++)
         {
-            vector<Ñassette>& books = usrs[i].retBooks();
+            vector<Ã‘assette>& books = usrs[i].retBooks();
             for (int c = 0; c < books.size(); c++)
             {
                 if (books[c].GetName() == bok.GetName())
