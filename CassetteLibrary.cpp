@@ -14,14 +14,14 @@ int main()
 	{
 	work:
 		int n = 0;
-		cout << endl << "Создать нового пользователя 1" << endl;
-		cout << "Добавить кассету VHS 2" << endl;
-		cout << "Выдать кассету 3" << endl;
-		cout << "Принять кассету обратно 4" << endl;
-		cout << "Получить занятые кассеты 5" << endl;
-		cout << "Вывести все кассеты 6" << endl;
-		cout << "Вывести всех пользователей 7" << endl;
-		cout << "Введите вариант работы: " << endl << endl;
+		cout << endl << "1.Создать нового пользователя" << endl;
+		cout << "2.Добавить кассету VHS" << endl;
+		cout << "3.Выдать кассету" << endl;
+		cout << "4.Принять кассету обратно" << endl;
+		cout << "5.Получить занятые кассеты" << endl;
+		cout << "6.Вывести все кассеты" << endl;
+		cout << "7.Вывести всех пользователей" << endl;
+		cout << "Введите вариант работы:" << endl << endl;
 		cin >> n;
 
 		switch (n)
@@ -142,13 +142,13 @@ int main()
 		}
 		case 7:
 		{
+			int n = 0
 			for (User us : users)
-			{
+			{	
+				n++;
+				cout << "№\t" << "Фамилия\t" << "Имя\t" << "ID:" << endl;
 				User::sUs_initials init = us.retName();
-
-				cout << "Фамилия: " << init.second_name << endl;
-				cout << "Имя: " << init.name << endl;
-				cout << "ID: " << init.id << endl << endl;
+				cout << n << "\t" << init.second_name << "/t" << init.name << "\t" << init.id << endl << endl;
 			}
 			break;
 		}
